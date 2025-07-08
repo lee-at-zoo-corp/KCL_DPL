@@ -1,0 +1,24 @@
+// A KCL library to support a nicer standard experience.
+// AGPLv3
+
+fn enumerate(@array) {
+  return reduce(array, initial = [0, []], f = fn(@el, accum) {
+   return [accum[0] + 1, push(accum[1], item=[accum[0], el])]
+  })[1]
+}
+
+// Usage:
+// x = enumerate([1,2,3])
+// 
+// y = map(x, f = fn(@el) {
+//   return el[0] // the index, el[1] is the value.
+// })
+
+fn concats(@arrays) {
+  return reduce(arrays, initial = [], f = fn(@array, accum) {
+    return concat(accum, array)
+  })
+}
+
+// Usage:
+// concats([[0,1], [2,3], [4,5]])
