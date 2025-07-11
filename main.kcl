@@ -15,7 +15,7 @@ fn enumerate(@array) {
 
 fn concats(@arrays) {
   return reduce(arrays, initial = [], f = fn(@array, accum) {
-    return concat(accum, array)
+    return concat(accum, items=array)
   })
 }
 
