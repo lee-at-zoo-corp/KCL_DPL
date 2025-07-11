@@ -40,3 +40,12 @@ fn replaceItem(@array, index, item) {
 }
 
 // x = replaceItem([0, 1, 2, 3, 4, 5], index=3, item=9)
+
+fn arrayOfN(@n, value) {
+ return reduce([0..<n], initial=[], f=fn(@el, accum) {
+    return concat(accum, items=[value])
+ })
+}
+
+// arrayOfN(3, 6)
+// returns [6,6,6]
