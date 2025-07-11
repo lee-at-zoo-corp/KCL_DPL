@@ -7,7 +7,6 @@ fn enumerate(@array) {
   })[1]
 }
 
-// Usage:
 // x = enumerate([1,2,3])
 // 
 // y = map(x, f = fn(@el) {
@@ -20,5 +19,24 @@ fn concats(@arrays) {
   })
 }
 
-// Usage:
 // concats([[0,1], [2,3], [4,5]])
+
+fn slice(@array, start, end) {
+  return reduce(enumerate(array), initial=[], f =fn(@kv, accum) {
+    return if (kv[0] >= start & kv[0] < end) {
+      concat(accum, items=[kv[1]])
+    } else {
+      accum
+    }
+  })
+}
+
+// x = slice([0, 1, 2, 3, 4, 5], start=0, end=3)
+
+fn replaceItem(@array, index, item) {
+  a = slice(array, start=0, end=index)
+  b = slice(array, start=index + 1, end=count(array))
+  return concats([a, [item], b])
+}
+
+// x = replaceItem([0, 1, 2, 3, 4, 5], index=3, item=9)
