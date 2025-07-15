@@ -22,8 +22,8 @@ fn concats(@arrays) {
 // concats([[0,1], [2,3], [4,5]])
 
 fn slice(@array, start, end) {
-  realStart = rem(start, count(array))
-  realEnd = rem(end, count(array))
+  realStart = rem(start, divisor=count(array))
+  realEnd = rem(end, divisor=count(array))
   return reduce(enumerate(array), initial=[], f=fn(@kv, accum) {
     return if (kv[0] >= realStart & kv[0] < realEnd) {
       concat(accum, items=[kv[1]])
