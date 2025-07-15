@@ -22,8 +22,10 @@ fn concats(@arrays) {
 // concats([[0,1], [2,3], [4,5]])
 
 fn slice(@array, start, end) {
-  return reduce(enumerate(array), initial=[], f =fn(@kv, accum) {
-    return if (kv[0] >= start & kv[0] < end) {
+  realStart = rem(start, count(array))
+  realEnd = rem(end, count(array))
+  return reduce(enumerate(array), initial=[], f=fn(@kv, accum) {
+    return if (kv[0] >= realStart & kv[0] < realEnd) {
       concat(accum, items=[kv[1]])
     } else {
       accum
@@ -49,3 +51,23 @@ fn arrayOfN(@n, value) {
 
 // arrayOfN(3, 6)
 // returns [6,6,6]
+
+fn zip(@array, items) {
+  return reduce(enumerate(array), initial=[], f=fn(@kv, accum) {
+    i = kv[0]
+    return concat(accum, items=[[kv[1], items[i]]])
+  })
+}
+
+// x = zip([0,1,2],items=[0,1,2])
+// returns [[0,0],[1,1],[2,2]]
+
+fn at(@array, i) {
+  return array[rem(i, divisor=count(array))]
+}
+
+// at([9,8,7,6], i=2)
+// returns 7
+
+// at([9,8,7,6], i=-1)
+// returns 6
