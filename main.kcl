@@ -60,8 +60,15 @@ fn zip(@array, items) {
 // x = zip([0,1,2],items=[0,1,2])
 // returns [[0,0],[1,1],[2,2]]
 
+fn mod(@n, divisor) {
+  return rem(rem(n, divisor) + divisor, divisor)
+}
+
+// mod(-1, 10)
+// returns 9
+
 fn at(@array, i) {
-  return array[rem(i, divisor=count(array))]
+  return array[mod(i, divisor=count(array))]
 }
 
 // at([9,8,7,6], i=2)
@@ -69,3 +76,4 @@ fn at(@array, i) {
 
 // at([9,8,7,6], i=-1)
 // returns 6
+
