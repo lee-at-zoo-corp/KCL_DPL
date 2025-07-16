@@ -68,7 +68,7 @@ fn mod(@n, divisor) {
 // returns 9
 
 fn at(@array, i) {
-  return array[if i < 0 { count(@array) + i } else { i }]
+  return array[if i < 0 { count(array) + i } else { i }]
 }
 
 // at([9,8,7,6], i=2)
